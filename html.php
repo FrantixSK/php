@@ -17,6 +17,12 @@ button {
         cursor: pointer;   
         border: 2px solid black; 
          }   
+
+#submitbutton{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+}
  form {   
         border: 3px solid black;   
     }   
@@ -47,7 +53,7 @@ button {
             <input type="text" placeholder="Enter Username" name="username" required>  
             <label>Password : </label>   
             <input type="password" placeholder="Enter Password" name="password" required>  
-            <button type="submit">Login</button>   
+            <div id = "submitbutton"><button type="submit">Login</button></div>
             <input type="checkbox" checked="checked"> Remember me     
              <a href="register.html"> register </a>   
         </div>   
