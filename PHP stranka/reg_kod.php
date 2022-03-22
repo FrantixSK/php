@@ -8,6 +8,7 @@ $passCertainLength = true;
 $hasPasswordMinOneNumber = true;
 $samePass = true;
 $passUpperCase = true;
+$mailCorrectFormat = true;
 
 $username = $_POST["username"];
 $email = $_POST["email"];
@@ -21,29 +22,29 @@ echo "<br>";
 
  
 if(strlen($password) < 5) {
- echo "Password must be at least 5 characters in length.";
+ echo "Password must be at least 5 characters in length.<br>";
  $passCertainLength = false;
 } else {
- echo "Your password is long enough.";
+ echo "Your password is long enough.<br>";
 }
 
 
 
 if(strlen($password) < 5 || !$number){
-echo "Password must contain at least one number.";
+echo "Password must contain at least one number.<br>";
 $hasPasswordMinOneNumber = false;
 } else {
- echo "Your password has at least one number.";
+ echo "Your password has at least one number.<br>";
 }
 
 
 
 
 if(strlen($password) < 5 || !$uppercase){
-    echo "Password must have at least 1 uppercase letter.";
+    echo "Password must have at least 1 uppercase letter.<br>";
     $passUpperCase = false;
    } else {
-    echo "Your password has at least 1 uppercase letter.";
+    echo "Your password has at least 1 uppercase letter.<br>";
    }
 
 
@@ -54,6 +55,14 @@ if($repPassword == $password){
     echo "hesla sa nezhoduju <br>";
     $samePass = false;
 }
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "Invalid email format <br>";
+    $mailCorrectFormat = false;
+  }else{
+      echo "correct email format <br>";
+  }
+
 
 
 
@@ -74,29 +83,25 @@ if(empty($_POST["repPassword"])){
 }
 
 if($isEmpty == true){
-    echo "nieco si nezadal";
-    echo "<br>";
+    echo "nieco si nezadal<br>";
 }
 else{
-    echo "zadal si vsetko";
-    echo "<br>";
+    echo "vypnil si vsetko <br>";
 }
 
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-if($isEmpty == false && $samePass && $hasPasswordMinOneNumber && $passUpperCase){
+if($isEmpty == false && $samePass && $hasPasswordMinOneNumber && $passUpperCase && $mailCorrectFormat){
     $sql = "INSERT INTO users(username,email,password) VALUES ('$username', '$email', '$hashed_password')";
-if ($conn->query($sql) === TRUE) {
-echo "new record created successfully";
-}
-else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-$conn->close();
-}
-else{
-    header('Location: register.php');
-}
+    if ($conn->query($sql) === TRUE) {
+    echo "new record created successfully<br>";
+    }
+    else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $conn->close();
+    }
+
 
 
 
