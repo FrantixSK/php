@@ -1,23 +1,26 @@
+
 <?php
+require_once("connection.php");
+$username = $_POST["username"];
+$password = $_POST["password"];
+$hashed_password = md5($_POST["password"]);
 
-require_once ('connection.php');
-
-$uname = $_POST["username"];
-$psw = $_POST["password"];
-
-$sqlu = "SELECT * FROM `users` WHERE username = '$uname'";
-$sqlp = "SELECT * FROM `users` WHERE password = '$psw'";
-$id1 = "SELECT User_ID FROM `users` WHERE username = '$uname'";
-$id2 = "SELECT User_ID FROM `users` WHERE password = '$psw'";
-$r_u = mysqli_query($link, $sqlu);
-$r_p = mysqli_query($link, $sqlp);
+if(empty($username) || empty($password)){
+    header("Location: ./login.php?message=niečo nezadané");
+}
 
 
+$sql = "SELECT * FROM users WHERE username = '".$username."'and password= '".$hashed_password."'";
+echo $sql;
+$result = $link->query($sql);
 
-if (mysqli_num_rows($r_u) == 1 && mysqli_num_rows($r_p) > 0 && $idu == $idp) {
-    echo "Login successful.";
-    header('Location: index.php');
+if($result->num_rows==1){
+    session_start();
+    $_SESSION["username"] = $username;
+
+    header("Location: login.php?message=USPESNE PRIHLASENY");
 }
 else{
-    echo "ERROR";
+    header("Location: login.php?message=zle meno alebo heslo");
 }
+?>
