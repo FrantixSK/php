@@ -1,7 +1,22 @@
-<?php include('./parts/header.php')?>
+<?php include('./parts/header.php');
+include("getAllUsers.php");
+?>
+
+
 <main class = "container">
  
 
+<ul class="list-group">
+  <li class="list-group-item">
+      <span class ="text-danger"> <strong> ID. USERNAME </strong></span>
+  </li>
+  <?php foreach($users as $username) : ?>
+<li class="list-group-item d-flex">
+  <img src="/images/<?php echo $username["avatar"]?> " alt="<?php echo $username["username"]?> " >
+<a href="#" class="text-danger"> <?php echo $username["id"] . ". " . $username["username"] ?></a>
+</li>
+<?php endforeach; ?>
+</ul>
 </main>
 
 
@@ -12,16 +27,13 @@
 <style>
 
 #wrapper{
-    width:50%;
+    width:20%;
     margin-left: auto;
   margin-right: auto;
 }
+
 img{
-    margin-top:10%;
-    display:block;
-    width: 25%;
-  margin-left: auto;
-  margin-right: auto;
+  width:5%;
 }
 
 

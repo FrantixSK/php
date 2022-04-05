@@ -37,6 +37,7 @@ session_start();
                      Currently logged in as <?php echo $_SESSION["username"] ?>
                   </p>
                   <li class="nav-item">
+                  <a class="nav-link" href="#"><a href="./profile.php" button type="button" class="btn btn-success">profil</button></a>
                   <a href="./php_scripts/Logout.php" class="btn btn-danger mx-2">LOGOUT</a>
                   <li class="nav-item">
                   <?php endif; ?>
