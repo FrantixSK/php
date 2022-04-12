@@ -4,17 +4,34 @@ include("getAllUsers.php");
 
 
 <main class = "container">
- 
+ <h1 class="m-4 text-uppercase">Zoznam uživateľov</h1>
 
 <ul class="list-group">
-  <li class="list-group-item">
-      <span class ="text-danger"> <strong> ID. USERNAME </strong></span>
+  <li class="list-group-item list-group-item-action active d-flex row">
+      <span class ="col-1">  ID.</span>
+      <span class ="col-2">  Avatar</span>
+      <span class ="col-2">  Username</span>
+      <span class ="col-2"> Email</span>
+      <span class ="col-3">  Registered at</span>
+      <span class ="col-2 text-center">  Akcie</span>
   </li>
   <?php foreach($users as $username) : ?>
-<li class="list-group-item d-flex">
-  <img src="/images/<?php echo $username["avatar"]?> " alt="<?php echo $username["username"]?> " >
-<a href="#" class="text-danger"> <?php echo $username["id"] . ". " . $username["username"] ?></a>
+    <a href="profile.php?id=<?php echo $username["id"]?>" class="text-decoration-none">
+
+<li class="list-group-item list-group-item-action d-flex row align-items-center">
+  <span class="text-danger col-1"> <?php echo $username["id"]?></span>
+  <div class="col-2">
+    <img src="/images/<?php echo $username["avatar"]?>" alt ="<?php echo $username["username"]?>"  style="width: 50px;height: auto"> 
+  </div>
+  <span class="col-2"> <?php echo $username["username"] ?></span>
+  <span class="col-2"> <?php echo $username["email"] ?></span>
+  <span class="col-3"> <?php echo $username["created_at"] ?></span>
+  <div class="col-2 d-flex justify-content-center">
+     <button class="btn btn-danger"> Zmazať</button>
+  </div>
+  
 </li>
+  </a>
 <?php endforeach; ?>
 </ul>
 </main>

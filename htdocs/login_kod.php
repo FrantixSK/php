@@ -1,6 +1,6 @@
 
 <?php
-require_once("connection.php");
+require_once("pripojenie.php");
 $username = $_POST["username"];
 $password = $_POST["password"];
 $hashed_password = md5($_POST["password"]);
