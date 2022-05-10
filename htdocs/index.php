@@ -16,7 +16,7 @@ include("getAllUsers.php");
       <span class ="col-2 text-center">  Akcie</span>
   </li>
   <?php foreach($users as $username) : ?>
-    <a href="profile.php?id=<?php echo $username["id"]?>" class="text-decoration-none">
+   
 
 <li class="list-group-item list-group-item-action d-flex row align-items-center">
   <span class="text-danger col-1"> <?php echo $username["id"]?></span>
@@ -27,11 +27,12 @@ include("getAllUsers.php");
   <span class="col-2"> <?php echo $username["email"] ?></span>
   <span class="col-3"> <?php echo $username["created_at"] ?></span>
   <div class="col-2 d-flex justify-content-center">
-     <button class="btn btn-danger"> Zmazať</button>
+     <a class="btn btn-danger" href="/php_scripts/delete_user.php?id=<?php echo $username['id']?>"> Zmazať</a>
+     <a class="btn btn-success" href="profile.php?id=<?php echo $username["id"]?>" class="text-decoration-none"> profil</a>
   </div>
   
+ 
 </li>
-  </a>
 <?php endforeach; ?>
 </ul>
 </main>
